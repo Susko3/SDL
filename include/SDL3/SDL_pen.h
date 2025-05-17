@@ -43,6 +43,7 @@
 #include <SDL3/SDL_mouse.h>
 #include <SDL3/SDL_touch.h>
 
+#include <SDL3/SDL_begin_code.h>
 /* Set up for C function definitions, even when using C++ */
 #ifdef __cplusplus
 extern "C" {
@@ -74,7 +75,6 @@ typedef Uint32 SDL_PenID;
  * \since This macro is available since SDL 3.2.0.
  */
 #define SDL_PEN_TOUCHID ((SDL_TouchID)-2)
-
 
 /**
  * Pen input flags, as reported by various pen events' `pen_state` field.
@@ -118,10 +118,26 @@ typedef enum SDL_PenAxis
     SDL_PEN_AXIS_COUNT       /**< Total known pen axis types in this version of SDL. This number may grow in future releases! */
 } SDL_PenAxis;
 
+typedef enum SDL_PenLocation
+{
+    SDL_PEN_LOCATION_UNKNOWN,
+    SDL_PEN_LOCATION_INTERNAL,
+    SDL_PEN_LOCATION_EXTERNAL
+} SDL_PenLocation;
+
+/**
+ * TODO.
+ *
+ * \param instance_id TODO.
+ * \since This macro is available since SDL 3.4.0.
+ */
+extern SDL_DECLSPEC SDL_PenLocation SDLCALL SDL_GetPenLocation(SDL_PenID instance_id);
+
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
 }
 #endif
+#include <SDL3/SDL_close_code.h>
 
 #endif /* SDL_pen_h_ */
 

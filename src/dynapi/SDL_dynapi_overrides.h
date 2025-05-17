@@ -1278,3 +1278,4 @@
 #define SDL_PutAudioStreamPlanarData SDL_PutAudioStreamPlanarData_REAL
 #define SDL_SetAudioIterationCallbacks SDL_SetAudioIterationCallbacks_REAL
 #define SDL_GetEventDescription SDL_GetEventDescription_REAL
+#define SDL_GetPenLocation SDL_GetPenLocation_REAL

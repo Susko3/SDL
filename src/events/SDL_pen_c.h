@@ -53,6 +53,7 @@ typedef struct SDL_PenInfo
     Uint32 wacom_id;   /**< For Wacom devices: wacom tool type ID, otherwise 0 (useful e.g. with libwacom) */
     int num_buttons; /**< Number of pen buttons (not counting the pen tip), or -1 if unknown. */
     SDL_PenSubtype subtype;  /**< type of pen device */
+    SDL_PenLocation location;
 } SDL_PenInfo;
 
 // Backend calls this when a new pen device is hotplugged, plus once for each pen already connected at startup.
