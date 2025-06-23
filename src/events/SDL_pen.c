@@ -199,13 +199,13 @@ SDL_PenInputFlags SDL_GetPenStatus(SDL_PenID instance_id, float *axes, int num_a
     return result;
 }
 
-SDL_PenLocation SDL_GetPenLocation(SDL_PenID instance_id)
+SDL_PenDeviceType SDL_GetPenDeviceType(SDL_PenID instance_id)
 {
     SDL_LockRWLockForReading(pen_device_rwlock);
     const SDL_Pen *pen = FindPenByInstanceId(instance_id);
-    SDL_PenLocation result = SDL_PEN_LOCATION_UNKNOWN;
+    SDL_PenDeviceType result = SDL_PEN_DEVICE_TYPE_INVALID;
     if (pen) {
-        result = pen->info.location;
+        result = pen->info.device_type;
     }
     SDL_UnlockRWLock(pen_device_rwlock);
     return result;

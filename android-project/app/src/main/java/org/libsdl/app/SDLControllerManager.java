@@ -663,9 +663,9 @@ class SDLHapticHandler {
 }
 
 class SDLGenericMotionListener_API14 implements View.OnGenericMotionListener {
-    protected static final int SDL_PEN_LOCATION_UNKNOWN = 0;
-    protected static final int SDL_PEN_LOCATION_INTERNAL = 1;
-    protected static final int SDL_PEN_LOCATION_EXTERNAL = 2;
+    protected static final int SDL_PEN_DEVICE_TYPE_UNKNOWN = 0;
+    protected static final int SDL_PEN_DEVICE_TYPE_DIRECT = 1;
+    protected static final int SDL_PEN_DEVICE_TYPE_INDIRECT = 2;
 
     // Generic Motion (mouse hover, joystick...) events go here
     @Override
@@ -718,7 +718,7 @@ class SDLGenericMotionListener_API14 implements View.OnGenericMotionListener {
                         // BUTTON_STYLUS_PRIMARY is 2^5, so shift by 4, and apply SDL_PEN_INPUT_DOWN/SDL_PEN_INPUT_ERASER_TIP
                         int buttons = (event.getButtonState() >> 4) | (1 << (toolType == MotionEvent.TOOL_TYPE_STYLUS ? 0 : 30));
 
-                        SDLActivity.onNativePen(event.getPointerId(i), getPenLocation(event.getDevice()), buttons, action, x, y, p);
+                        SDLActivity.onNativePen(event.getPointerId(i), getPenDeviceType(event.getDevice()), buttons, action, x, y, p);
                         consumed = true;
                         break;
                 }
@@ -756,8 +756,8 @@ class SDLGenericMotionListener_API14 implements View.OnGenericMotionListener {
         return event.getY(pointerIndex);
     }
 
-    int getPenLocation(InputDevice penDevice) {
-        return SDL_PEN_LOCATION_UNKNOWN;
+    int getPenDeviceType(InputDevice penDevice) {
+        return SDL_PEN_DEVICE_TYPE_UNKNOWN;
     }
 }
 
@@ -857,12 +857,12 @@ class SDLGenericMotionListener_API26 extends SDLGenericMotionListener_API24 {
 
 class SDLGenericMotionListener_API29 extends SDLGenericMotionListener_API26 {
     @Override
-    int getPenLocation(InputDevice penDevice)
+    int getPenDeviceType(InputDevice penDevice)
     {
         if (penDevice == null) {
-            return SDL_PEN_LOCATION_UNKNOWN;
+            return SDL_PEN_DEVICE_TYPE_UNKNOWN;
         }
 
-        return penDevice.isExternal() ? SDL_PEN_LOCATION_EXTERNAL : SDL_PEN_LOCATION_INTERNAL;
+        return penDevice.isExternal() ? SDL_PEN_DEVICE_TYPE_INDIRECT : SDL_PEN_DEVICE_TYPE_DIRECT;
     }
 }

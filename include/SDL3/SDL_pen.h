@@ -118,12 +118,13 @@ typedef enum SDL_PenAxis
     SDL_PEN_AXIS_COUNT       /**< Total known pen axis types in this version of SDL. This number may grow in future releases! */
 } SDL_PenAxis;
 
-typedef enum SDL_PenLocation
+typedef enum SDL_PenDeviceType
 {
-    SDL_PEN_LOCATION_UNKNOWN,
-    SDL_PEN_LOCATION_INTERNAL,
-    SDL_PEN_LOCATION_EXTERNAL
-} SDL_PenLocation;
+    SDL_PEN_DEVICE_TYPE_INVALID = -1,
+    SDL_PEN_DEVICE_TYPE_UNKNOWN,
+    SDL_PEN_DEVICE_TYPE_DIRECT,
+    SDL_PEN_DEVICE_TYPE_INDIRECT
+} SDL_PenDeviceType;
 
 /**
  * TODO.
@@ -131,7 +132,7 @@ typedef enum SDL_PenLocation
  * \param instance_id TODO.
  * \since This macro is available since SDL 3.4.0.
  */
-extern SDL_DECLSPEC SDL_PenLocation SDLCALL SDL_GetPenLocation(SDL_PenID instance_id);
+extern SDL_DECLSPEC SDL_PenDeviceType SDLCALL SDL_GetPenDeviceType(SDL_PenID instance_id);
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus
