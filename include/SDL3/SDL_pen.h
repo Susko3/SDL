@@ -118,6 +118,11 @@ typedef enum SDL_PenAxis
     SDL_PEN_AXIS_COUNT       /**< Total known pen axis types in this version of SDL. This number may grow in future releases! */
 } SDL_PenAxis;
 
+/**
+ * An enum that describes the type of a pen device.
+ *
+ * \since This enum is available since SDL 3.4.0.
+ */
 typedef enum SDL_PenDeviceType
 {
     SDL_PEN_DEVICE_TYPE_INVALID = -1,
@@ -127,10 +132,14 @@ typedef enum SDL_PenDeviceType
 } SDL_PenDeviceType;
 
 /**
- * TODO.
+ * Get the device type of the given pen.
  *
- * \param instance_id TODO.
- * \since This macro is available since SDL 3.4.0.
+ * \param instance_id the pen instance ID.
+ * \returns the device type of the given pen, or SDL_PEN_DEVICE_TYPE_INVALID on failure; call SDL_GetError() for more information.
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.4.0.
  */
 extern SDL_DECLSPEC SDL_PenDeviceType SDLCALL SDL_GetPenDeviceType(SDL_PenID instance_id);
 
