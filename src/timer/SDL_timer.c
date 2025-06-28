@@ -651,6 +651,26 @@ Uint64 SDL_GetTicks(void)
     return value;
 }
 
+Uint64 SDL_PerformanceCounterToTicksNS(const Uint64 counter, bool *is_negative)
+{
+    Uint64 starting_value, value;
+
+    if (!tick_start) {
+        SDL_InitTicks();
+    }
+
+    *is_negative = counter < tick_start;
+    if (*is_negative) {
+        starting_value = tick_start - counter;
+    } else {
+        starting_value = counter - tick_start;
+    }
+    value = starting_value * tick_numerator_ns;
+    SDL_assert(value >= starting_value);
+    value /= tick_denominator_ns;
+    return value;
+}
+
 void SDL_Delay(Uint32 ms)
 {
     SDL_SYS_DelayNS(SDL_MS_TO_NS(ms));
