@@ -1280,3 +1280,4 @@
 #define SDL_GetEventDescription SDL_GetEventDescription_REAL
 #define SDL_PutAudioStreamDataNoCopy SDL_PutAudioStreamDataNoCopy_REAL
 #define SDL_PerformanceCounterToTicksNS SDL_PerformanceCounterToTicksNS_REAL
+#define SDL_TicksNSToPerformanceCounter SDL_TicksNSToPerformanceCounter_REAL

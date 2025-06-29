@@ -191,6 +191,21 @@ static int SDLCALL timer_performanceCounterToTicksNS(void *arg)
     return TEST_COMPLETED;
 }
 
+static int SDLCALL timer_ticksNSToPerformanceCounter(void *arg)
+{
+    Uint64 firstCounter, secondCounter, thirdCounter, secondNS;
+
+    firstCounter = SDL_GetPerformanceCounter();
+    secondNS = SDL_GetTicksNS();
+    thirdCounter = SDL_GetPerformanceCounter();
+
+    secondCounter = SDL_TicksNSToPerformanceCounter(secondNS);
+    SDLTest_AssertPass("Call to SDL_TicksNSToPerformanceCounter()");
+    SDLTest_AssertCheck(firstCounter <= secondCounter && secondCounter <= thirdCounter, "Check return value, expected: %" SDL_PRIu64 " in between %" SDL_PRIu64 " and %" SDL_PRIu64, secondCounter, firstCounter, thirdCounter);
+
+    return TEST_COMPLETED;
+}
+
 /* ================= Test References ================== */
 
 /* Timer test cases */
@@ -214,9 +229,13 @@ static const SDLTest_TestCaseReference timerTest5 = {
     timer_performanceCounterToTicksNS, "timer_performanceCounterToTicksNS", "Call to SDL_PerformanceCounterToTicksNS", TEST_ENABLED
 };
 
+static const SDLTest_TestCaseReference timerTest6 = {
+    timer_ticksNSToPerformanceCounter, "timer_ticksNSToPerformanceCounter", "Call to SDL_TicksNSToPerformanceCounter", TEST_ENABLED
+};
+
 /* Sequence of Timer test cases */
 static const SDLTest_TestCaseReference *timerTests[] = {
-    &timerTest1, &timerTest2, &timerTest3, &timerTest4, &timerTest5, NULL
+    &timerTest1, &timerTest2, &timerTest3, &timerTest4, &timerTest5, &timerTest6, NULL
 };
 
 /* Timer test suite (global) */

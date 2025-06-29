@@ -261,6 +261,21 @@ extern SDL_DECLSPEC Uint64 SDLCALL SDL_GetPerformanceFrequency(void);
 extern SDL_DECLSPEC Uint64 SDLCALL SDL_PerformanceCounterToTicksNS(Uint64 counter, bool *is_negative);
 
 /**
+ * Converts a DL_GetTicksNS-compatible timestamp to a timestamp compatible with SDL_GetPerformanceCounter.
+ *
+ * \param ns ...
+ * \returns ...
+ *
+ * \threadsafety It is safe to call this function from any thread.
+ *
+ * \since This function is available since SDL 3.4.0.
+ *
+ * \sa SDL_GetTicksNS
+ * \sa SDL_GetPerformanceCounter
+ */
+extern SDL_DECLSPEC Uint64 SDLCALL SDL_TicksNSToPerformanceCounter(Uint64 ns);
+
+/**
  * Wait a specified number of milliseconds before returning.
  *
  * This function waits a specified number of milliseconds before returning. It

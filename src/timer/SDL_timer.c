@@ -671,6 +671,20 @@ Uint64 SDL_PerformanceCounterToTicksNS(const Uint64 counter, bool *is_negative)
     return value;
 }
 
+Uint64 SDL_TicksNSToPerformanceCounter(const Uint64 ns)
+{
+    Uint64 value;
+
+    if (!tick_start) {
+        SDL_InitTicks();
+    }
+
+    value = ns * tick_denominator_ns;
+    value /= tick_numerator_ns;
+    value += tick_start;
+    return value;
+}
+
 void SDL_Delay(Uint32 ms)
 {
     SDL_SYS_DelayNS(SDL_MS_TO_NS(ms));

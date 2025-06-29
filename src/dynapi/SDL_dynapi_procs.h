@@ -1288,3 +1288,4 @@ SDL_DYNAPI_PROC(bool,SDL_SetAudioIterationCallbacks,(SDL_AudioDeviceID a,SDL_Aud
 SDL_DYNAPI_PROC(int,SDL_GetEventDescription,(const SDL_Event *a,char *b,int c),(a,b,c),return)
 SDL_DYNAPI_PROC(bool,SDL_PutAudioStreamDataNoCopy,(SDL_AudioStream *a,const void *b,int c,SDL_AudioStreamDataCompleteCallback d,void *e),(a,b,c,d,e),return)
 SDL_DYNAPI_PROC(Uint64,SDL_PerformanceCounterToTicksNS,(Uint64 a,bool *b),(a,b),return)
+SDL_DYNAPI_PROC(Uint64,SDL_TicksNSToPerformanceCounter,(Uint64 a),(a),return)
